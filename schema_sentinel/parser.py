@@ -17,8 +17,17 @@ def parse_migration_file(file_path: str) -> List[MigrationOperation]:
     Returns:
         List of MigrationOperation objects in order of appearance.
     """
-    with open(file_path, "r", encoding="utf-8") as f:
-        content = f.read()
+    content = None
+    for enc in ("utf-8-sig", "utf-8", "utf-16", "latin1"):
+        try:
+            with open(file_path, "r", encoding=enc) as f:
+                content = f.read()
+            break
+        except (UnicodeDecodeError, UnicodeError):
+            continue
+    if content is None:
+        with open(file_path, "r", encoding="utf-8", errors="replace") as f:
+            content = f.read()
     
     statements = sqlparse.split(content)
     
@@ -104,7 +113,9 @@ def _parse_statement(stmt_text: str, line_number: int) -> Optional[MigrationOper
 
 def _extract_table_name(stmt_text: str) -> Optional[str]:
     """Extract the table name from a SQL statement."""
-    cleaned = re.sub(r'(if exists|if not exists)', '', stmt_text, flags=re.IGNORECASE)
+    cleaned = re.sub(r'--[^\n]*', '', stmt_text)
+    cleaned = re.sub(r'/\*.*?\*/', '', cleaned, flags=re.DOTALL)
+    cleaned = re.sub(r'(if exists|if not exists)', '', cleaned, flags=re.IGNORECASE)
     cleaned = re.sub(r'(public|schema)\.', '', cleaned)
     
     match = re.search(r'\b(table|index)\s+([a-zA-Z_][a-zA-Z0-9_$]*)', cleaned, re.IGNORECASE)
@@ -127,7 +138,9 @@ def _extract_table_name(stmt_text: str) -> Optional[str]:
 
 def _extract_table_name_from_index(stmt_text: str) -> Optional[str]:
     """Extract table name from CREATE INDEX or DROP INDEX statements."""
-    match = re.search(r'\bon\s+([a-zA-Z_][a-zA-Z0-9_$]*)', stmt_text, re.IGNORECASE)
+    cleaned = re.sub(r'--[^\n]*', '', stmt_text)
+    cleaned = re.sub(r'/\*.*?\*/', '', cleaned, flags=re.DOTALL)
+    match = re.search(r'\bon\s+([a-zA-Z_][a-zA-Z0-9_$]*)', cleaned, re.IGNORECASE)
     if match:
         return match.group(1)
     return None
