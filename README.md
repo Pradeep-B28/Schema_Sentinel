@@ -176,3 +176,23 @@ this project under the terms of the MIT license. See the LICENSE file for detail
 ```
 
 Built with 🛡️ by **[Pradeep](https://github.com/Pradeep-B28)**.
+
+---
+
+## 👨‍💻 Author & Contact
+
+**Pradeep B**  
+*Java & DSA Master Trainer | Full-Stack Architect | Web Platform Engineer*
+
+- 🌐 **Softech Career & Placement Portal:** [reachsoftech.onrender.com](https://reachsoftech.onrender.com/home)
+- 🌌 **3D Interactive Developer Portfolio:** [pradeep-b28.github.io/GIT_3D_Portfolio](https://pradeep-b28.github.io/GIT_3D_Portfolio/)
+- 💻 **GitHub Profile:** [@Pradeep-B28](https://github.com/Pradeep-B28)
+- 💼 **LinkedIn:** [linkedin.com/in/pradeepb-2k](https://www.linkedin.com/in/pradeepb-2k)
+- 📧 **Email:** [pradeepbashaa@gmail.com](mailto:pradeepbashaa@gmail.com)
+
+### 🚀 Live Web Applications & Platforms
+- 🌐 **Softech Career Portal:** [reachsoftech.onrender.com](https://reachsoftech.onrender.com/home)
+- 🗺️ **Namma Route (Tamil Nadu Transit Graph):** [nammaroute-sigma.vercel.app](https://nammaroute-sigma.vercel.app/)
+- 🎆 **Diwali Sky (Fireworks Simulator):** [diwalisky.vercel.app](https://diwalisky.vercel.app)
+- ⚪ **Life in Dots (Lifespan in Weeks):** [lifeindots.vercel.app](https://lifeindots.vercel.app)
+- 🤖 **Catch the AI (Code Review & Debug Game):** [catch-the-ai.vercel.app](https://catch-the-ai.vercel.app/)
